@@ -14,7 +14,6 @@ export default class CreateUser{
 
     async execute(input: CreateUserInput): Promise<CreateUserOutput>{
         const encryptPassword = await hash(input.password, 10);
-        
         const newUser = new User(input.name, input.email, encryptPassword);
 
         await this.userRepository.save(newUser);
